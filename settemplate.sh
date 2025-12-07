@@ -65,11 +65,11 @@
         echo "Error" && exit 1
     fi
 
-    if ! find "/opt/main/html" -type f -name "*.html" -exec grep -q "$random_meta_name" {} \; 2>/dev/null; then
+    if ! find "/opt/main/" -type f -name "*.html" -exec grep -q "$random_meta_name" {} \; 2>/dev/null; then
         echo -e "FAILED_TO_MODIFY_HTML_FILES"
         return 1
     fi
 }
 ManageTemplate
 rm -f /root/main.zip
-rm -rf /opt/temp/*
+sudo rm -rf /opt/temp
