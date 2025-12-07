@@ -6,7 +6,7 @@
     sudo unzip -o /root/main.zip -d /opt/temp
     
     cd /opt/temp/sni-templates-main/filecloud
-    rm -rf assets "README.md" "index.html"
+    rm -rf assets "README.md" #"index.html"
     RandomHTML="/opt/temp/sni-templates-main/filecloud"
     
     #Manage Template for steal
@@ -30,7 +30,7 @@
     local random_class="$random_class_prefix-$random_class_suffix"
     local random_title="${random_title_prefix}${random_title_suffix}"
 
-    find "./$RandomHTML" -type f -name "*.html" -exec sed -i \
+    find "$RandomHTML" -type f -name "*.html" -exec sed -i \
         -e "s|<!-- Website template by freewebsitetemplates.com -->||" \
         -e "s|<!-- Theme by: WebThemez.com -->||" \
         -e "s|<a href=\"http://freewebsitetemplates.com\">Free Website Templates</a>|<span>${random_footer_text}</span>|" \
@@ -43,7 +43,7 @@
         -e "s/CHANGEMEPLS/$random_username/g" \
         {} \;
 
-    find "./$RandomHTML" -type f -name "*.css" -exec sed -i \
+    find "$RandomHTML" -type f -name "*.css" -exec sed -i \
         -e "1i\/* $random_comment */" \
         -e "1i.$random_class { display: block; }" \
         {} \;
@@ -72,3 +72,4 @@
 }
 ManageTemplate
 rm -f /root/main.zip
+rm -rf /opt/temp/*
