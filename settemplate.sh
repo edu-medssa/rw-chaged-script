@@ -2,7 +2,7 @@
 
     RandomHTML="/opt/temp"
 
-    wget https://https://github.com/edu-medssa/web_template/raw/refs/heads/main/main.zip -O main.zip
+    wget https://github.com/edu-medssa/web_template/raw/refs/heads/main/main.zip -O main.zip
     sudo mkdir -p /opt/main
     sudo mkdir -p /opt/temp
     sudo unzip -o /root/main.zip -d /opt/temp
