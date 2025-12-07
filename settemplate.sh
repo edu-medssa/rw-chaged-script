@@ -30,19 +30,33 @@
     local random_class="$random_class_prefix-$random_class_suffix"
     local random_title="${random_title_prefix}${random_title_suffix}"
 
+    #find "$RandomHTML" -type f -name "*.html" -exec sed -i \
+      #  -e "s|<!-- Website template by freewebsitetemplates.com -->||" \
+       # -e "s|<!-- Theme by: WebThemez.com -->||" \
+      #  -e "s|<a href=\"http://freewebsitetemplates.com\">Free Website Templates</a>|<span>${random_footer_text}</span>|" \
+      #  -e "s|<a href=\"http://webthemez.com\" alt=\"webthemez\">WebThemez.com</a>|<span>${random_footer_text}</span>|" \
+      #  -e "s|id=\"Content\"|id=\"rnd_${random_id_suffix}\"|" \
+      #  -e "s|id=\"subscribe\"|id=\"sub_${random_id_suffix}\"|" \
+      #  -e "s|<title>.*</title>|<title>${random_title}</title>|" \
+       # -e "s|</head>|<meta name=\"$random_meta_name\" content=\"$random_meta_id\">\n<!-- $random_comment -->\n</head>|" \
+      #  -e "s|</[Hh][Ee][Aa][Dd]\s*>|<meta name=\"$random_meta_name\" content=\"$random_meta_id\">\n<!-- $random_comment -->\n</head>|" \
+       # -e "s|<body|<body class=\"$random_class\"|" \
+      #  -e "s|CHANGEMEPLS|$random_username|g" \
+   # {} \;
+
     find "$RandomHTML" -type f -name "*.html" -exec sed -i \
-        -e "s|<!-- Website template by freewebsitetemplates.com -->||" \
-        -e "s|<!-- Theme by: WebThemez.com -->||" \
-        -e "s|<a href=\"http://freewebsitetemplates.com\">Free Website Templates</a>|<span>${random_footer_text}</span>|" \
-        -e "s|<a href=\"http://webthemez.com\" alt=\"webthemez\">WebThemez.com</a>|<span>${random_footer_text}</span>|" \
-        -e "s|id=\"Content\"|id=\"rnd_${random_id_suffix}\"|" \
-        -e "s|id=\"subscribe\"|id=\"sub_${random_id_suffix}\"|" \
-        -e "s|<title>.*</title>|<title>${random_title}</title>|" \
-        -e "s|</head>|<meta name=\"$random_meta_name\" content=\"$random_meta_id\">\n<!-- $random_comment -->\n</head>|" \
-        -e "s|</[Hh][Ee][Aa][Dd]\s*>|<meta name=\"$random_meta_name\" content=\"$random_meta_id\">\n<!-- $random_comment -->\n</head>|" \
-        -e "s|<body|<body class=\"$random_class\"|" \
-        -e "s|CHANGEMEPLS|$random_username|g" \
+        -e 's|<!-- Website template by freewebsitetemplates.com -->||' \
+        -e 's|<!-- Theme by: WebThemez.com -->||' \
+        -e 's|<a href="http://freewebsitetemplates.com">Free Website Templates</a>|<span'"${random_footer_text}"'</span>|' \
+        -e 's|<a href="http://webthemez.com" alt="webthemez">WebThemez.com</a>|<span'"${random_footer_text}"'</span>|' \
+        -e 's|id="Content"|id="rnd_'"${random_id_suffix}"'"|' \
+        -e 's|id="subscribe"|id="sub_'"${random_id_suffix}"'"|' \
+        -e 's|<title>.*</title>|<title'"${random_title}"'</title>|' \
+        -e 's|</head>|<meta name="'"${random_meta_name}"'" content="'"${random_meta_id}"'">\n<!-- '"${random_comment}"' -->\n</head>|' \
+        -e 's|<body|<body class="'"${random_class}"'"|' \
+        -e 's|CHANGEMEPLS|'"${random_username}"'|g' \
     {} \;
+
 
     find "$RandomHTML" -type f -name "*.css" -exec sed -i \
         -e "1i\/* $random_comment */" \
