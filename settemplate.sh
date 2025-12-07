@@ -51,8 +51,9 @@
         -e 's|<a href="http://webthemez.com" alt="webthemez">WebThemez.com</a>|<span'"${random_footer_text}"'</span>|' \
         -e 's|id="Content"|id="rnd_'"${random_id_suffix}"'"|' \
         -e 's|id="subscribe"|id="sub_'"${random_id_suffix}"'"|' \
-        -e 's|<title>.*</title>|<title'"${random_title}"'</title>|' \
-        -e 's|</head>|<meta name="'"${random_meta_name}"'" content="'"${random_meta_id}"'">\n<!-- '"${random_comment}"' -->\n</head>|' \
+        -e "s|<title>.*</title>|<title>${random_title}</title>|" \
+        -e 's|</[Hh][Ee][Aa][Dd]\<meta name="'"${random_meta_name}"'" content="'"${random_meta_id}"'">\n<!-- '"${random_comment}"' -->\n</head>|' \
+        -e "s|</[Hh][Ee][Aa][Dd]\s*>|<meta name=\"$random_meta_name\" content=\"$random_meta_id\">\n<!-- $random_comment -->\n</head>|" \
         -e 's|<body|<body class="'"${random_class}"'"|' \
         -e 's|CHANGEMEPLS|'"${random_username}"'|g' \
     {} \;
