@@ -59,7 +59,7 @@
         rm -rf /opt/main/*
         cp -a "${RandomHTML}"/. "/opt/main/"
     elif [[ -f "${RandomHTML}" ]]; then
-        cp "${RandomHTML}" "/opt/main/index.html"
+        cp "${RandomHTML}" "/opt/main/"
         echo "Copied"
     else
         echo "Error" && exit 1
