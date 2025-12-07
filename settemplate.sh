@@ -87,4 +87,4 @@
 }
 ManageTemplate
 rm -f /root/main.zip
-# sudo rm -rf /opt/temp
+rm -rf /opt/temp
