@@ -1,14 +1,17 @@
 #!/bin/bash
 
-    RandomHTML="/opt/temp"
-
     wget https://github.com/edu-medssa/web_template/raw/refs/heads/main/main.zip -O main.zip
     sudo mkdir -p /opt/main
     sudo mkdir -p /opt/temp
     sudo unzip -o /root/main.zip -d /opt/temp
+    
     cd /opt/temp/sni-templates-main/
     rm -rf assets "README.md" "index.html"
-
+    RandomHTML="/opt/temp"
+    
+    #Manage Template for steal
+    ManageTemplate() {
+    
     local random_meta_id=$(openssl rand -hex 16)
     local random_comment=$(openssl rand -hex 8)
     local random_class_suffix=$(openssl rand -hex 4)
@@ -66,5 +69,4 @@
         echo -e "FAILED_TO_MODIFY_HTML_FILES"
         return 1
     fi
-
 }
