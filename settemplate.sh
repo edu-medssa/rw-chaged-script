@@ -6,7 +6,7 @@
     sudo unzip -o /root/main.zip -d /opt/temp
     
     cd /opt/temp/sni-templates-main/filecloud
-    rm -rf assets "README.md" #"index.html"
+    # rm -rf assets "README.md" #"index.html"
     RandomHTML="/opt/temp/sni-templates-main/filecloud"
     
     #Manage Template for steal
