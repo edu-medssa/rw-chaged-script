@@ -1,4 +1,8 @@
-  local random_meta_id=$(openssl rand -hex 16)
+#!/bin/bash
+
+    RandomHTML="/opt/temp"
+
+    local random_meta_id=$(openssl rand -hex 16)
     local random_comment=$(openssl rand -hex 8)
     local random_class_suffix=$(openssl rand -hex 4)
     local random_title_prefix="RusBar_"
@@ -38,27 +42,22 @@
     wait "$spinner_pid" 2>/dev/null
     printf "\r\033[K" > /dev/tty
 
-    echo "${LANG[SELECT_TEMPLATE]}" "${RandomHTML}"
-
     if [[ -d "${RandomHTML}" ]]; then
-        if [[ ! -d "/var/www/html/" ]]; then
-            mkdir -p "/var/www/html/" || { echo "Failed to create /var/www/html/"; exit 1; }
+        if [[ ! -d "/opt/main/" ]]; then
+            mkdir -p "/opt/main/" || { echo "Failed to create /opt/main/"; exit 1; }
         fi
-        rm -rf /var/www/html/*
-        cp -a "${RandomHTML}"/. "/var/www/html/"
-        echo "${LANG[TEMPLATE_COPY]}"
+        rm -rf /opt/main/*
+        cp -a "${RandomHTML}"/. "/opt/main/"
     elif [[ -f "${RandomHTML}" ]]; then
-        cp "${RandomHTML}" "/var/www/html/index.html"
-        echo "${LANG[TEMPLATE_COPY]}"
+        cp "${RandomHTML}" "/opt/main/index.html"
+        echo "Copied"
     else
-        echo "${LANG[UNPACK_ERROR]}" && exit 1
+        echo "Error" && exit 1
     fi
 
-    if ! find "/var/www/html" -type f -name "*.html" -exec grep -q "$random_meta_name" {} \; 2>/dev/null; then
-        echo -e "${COLOR_RED}${LANG[FAILED_TO_MODIFY_HTML_FILES]}${COLOR_RESET}"
+    if ! find "/opt/main/html" -type f -name "*.html" -exec grep -q "$random_meta_name" {} \; 2>/dev/null; then
+        echo -e "FAILED_TO_MODIFY_HTML_FILES"
         return 1
     fi
 
-    cd /opt/
-    rm -rf simple-web-templates-main/ sni-templates-main/ nothing-sni-main/
 }
