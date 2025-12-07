@@ -71,6 +71,4 @@
     fi
 }
 ManageTemplate
-rm -rf /opt/temp/*
-rm -f /opt/temp
 rm -f /root/main.zip
