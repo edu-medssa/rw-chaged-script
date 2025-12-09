@@ -5259,7 +5259,7 @@ installation_node() {
         max-file: '5'
 
   remnanode:
-    image: remnawave/node:latest
+    image: remnawave/node:2.2.3
     container_name: remnanode
     hostname: remnanode
     restart: always
